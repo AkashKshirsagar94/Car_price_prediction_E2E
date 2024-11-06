@@ -15,7 +15,7 @@ def get_requirements(file_path:str)->List[str]:
     return requirements
 
 setup(
-      name = 'rainfallprediction',
+      name = 'carpriceprediction',
       version = '0.0.1',
       author= 'Akash',
       author_email= 'akky.kshirsagar@gmail.com',
