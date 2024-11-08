@@ -4,8 +4,12 @@ import os
 import logging
 import numpy as np
 import pandas as pd
+
 from src.exception import CustomException
 from src.logger import logging
+from src.components.data_cleaning import Clean_target
+from src.components.data_cleaning import Clean_features
+from src.components.data_transformation import DataTransformation
 
 @dataclass
 class DataIngestion:
@@ -32,3 +36,14 @@ class DataIngestion:
 if __name__== "__main__":
     obj = DataIngestion()
     raw_data = obj.initiate_data_ingestion()
+
+    cln_target = Clean_target('price', raw_data)
+    cln_target_data = cln_target.clean_target()
+    
+    cln_feature = Clean_features(cln_target_data)
+    cln_feature_data, num_features, cat_features = cln_feature.clean_data()
+    cln_feature_data.to_csv('artifacts/clean_data.csv', index=False)
+
+    data_transformation = DataTransformation(num_features, cat_features)
+    preprocessor_obj = data_transformation.initiate_data_transformation()
+    
