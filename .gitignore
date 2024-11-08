@@ -8,3 +8,5 @@ src/__pycache__
 /__pycache__/
 
 __pycache__
+
+**/carpriceprediction.egg-info/**

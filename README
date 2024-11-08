@@ -1,4 +1,8 @@
-To run the requirements.txt file in VS code terminal type
- pip install -r requirements.txt
+1. To run the requirements.txt file in VS code terminal type
+    pip install -r requirements.txt
 
- Always remember to open a folder correctly from the local repository.
+2. Always remember to open a folder correctly from the local repository.
+
+3. You might face error NoModuleName SRC. 
+    A. To solve this, always remember to run the setup file once done.
+    B. To successfully execute the find.packages() module, type 'pip install -e .' This ensures the packages are found.
