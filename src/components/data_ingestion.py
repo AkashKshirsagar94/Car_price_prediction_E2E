@@ -44,6 +44,7 @@ if __name__== "__main__":
     cln_feature_data, num_features, cat_features = cln_feature.clean_data()
     cln_feature_data.to_csv('artifacts/clean_data.csv', index=False)
 
-    data_transformation = DataTransformation(num_features, cat_features)
-    preprocessor_obj = data_transformation.initiate_data_transformation()
+    data_transformation = DataTransformation(num_features, cat_features, cln_feature_data)
+    preprocessor_obj, input_features = data_transformation.initiate_data_transformation()
+    print(input_features.shape)
     

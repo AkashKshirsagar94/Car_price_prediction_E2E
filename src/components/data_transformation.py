@@ -18,9 +18,10 @@ from src.utils import save_object
 from sklearn.impute import SimpleImputer
 
 class DataTransformation:
-    def __init__(self, num_features, cat_features):
+    def __init__(self, num_features, cat_features, data):
         self.num_features = num_features
         self.cat_features = cat_features
+        self.data = data
 
 #This creates transformation object that performs data normalization & onehotencoding    
     def data_transformation_object(self):
@@ -41,10 +42,15 @@ class DataTransformation:
         return preprocessor
 
     def initiate_data_transformation(self):
+        # Saving a preprocessor object file
         preprocessor_obj = self.data_transformation_object()
         preprocessor_obj_file_path = os.path.join('artifacts', 'preprocessor.pkl')
         save_object(file_path=preprocessor_obj_file_path, obj=preprocessor_obj)
 
-        return preprocessor_obj_file_path
+        #Initiate the data tranformation
+        x = self.data.drop(columns = ['price'], axis=1)
+        input_features = preprocessor_obj.fit_transform(x).toarray()
+
+        return preprocessor_obj_file_path, input_features
 
     
