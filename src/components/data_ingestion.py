@@ -10,6 +10,7 @@ from src.logger import logging
 from src.components.data_cleaning import Clean_target
 from src.components.data_cleaning import Clean_features
 from src.components.data_transformation import DataTransformation
+from src.components.model_training import ModelTraining
 
 @dataclass
 class DataIngestion:
@@ -46,5 +47,8 @@ if __name__== "__main__":
 
     data_transformation = DataTransformation(num_features, cat_features, cln_feature_data)
     preprocessor_obj, input_features = data_transformation.initiate_data_transformation()
-    print(input_features.shape)
+    
+    model_training = ModelTraining(input_features, cln_feature_data['price'])
+    best_model_score, best_model_name = model_training.train_model()
+    print(best_model_name, ' : ', best_model_score)
     

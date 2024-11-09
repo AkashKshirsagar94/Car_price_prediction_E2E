@@ -6,3 +6,10 @@
 3. You might face error NoModuleName SRC. 
     A. To solve this, always remember to run the setup file once done.
     B. To successfully execute the find.packages() module, type 'pip install -e .' This ensures the packages are found.
+
+4. How do you start?
+    A. Start by setting up project structure. Make sure each folder has __init__.py file
+    B. Requirements file --> Add all relevant packages
+    C. Setup file --> Run the set up file. Following point 3 from README. Make sure find_packages() is working
+    D. Complete exception.py, logger.py, utils.py
+    E. Then go ahead with data ingestion & all
