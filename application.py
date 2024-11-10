@@ -20,31 +20,21 @@ def predict_datapoint():
         return render_template('home.html')
     else:
         data=CustomData(
-            MinTemp=float(request.form.get('MinTemp')),
-            MaxTemp=float(request.form.get('MaxTemp')),
-            Rainfall=float(request.form.get('Rainfall')),
-            Evaporation=float(request.form.get('Evaporation')),
-            Sunshine=float(request.form.get('Sunshine')),
-            WindGustDir=request.form.get('WindGustDir'),
-            WindGustSpeed=float(request.form.get('WindGustSpeed')),
-            WindDir9am=request.form.get('WindDir9am'),
-            WindDir3pm=request.form.get('WindDir3pm'),
-            WindSpeed9am=float(request.form.get('WindSpeed9am')),
-            Humidity9am=float(request.form.get('Humidity9am')),
-            Humidity3pm=float(request.form.get('Humidity3pm')),
-            Cloud9am=float(request.form.get('Cloud9am')),
-            Cloud3pm=float(request.form.get('Cloud3pm')),
-            Temp3pm=float(request.form.get('Temp3pm')),
-            RainToday=request.form.get('RainToday')
+            float(request.form.get('curb-weight')),
+            float(request.form.get('engine-size')),
+            float(request.form.get('horsepower')),
+            float(request.form.get('city-mpg')),
+            float(request.form.get('length')),
+            request.form.get('make')
         )
 
-        pred_df = data.get_data_as_data_frame()
-        print(pred_df)
+        user_feature_data = data.convert_data_into_df()
+        print(user_feature_data)
         print("Before Prediction")
 
-        predict_pipeline = PredictPipeline()
+        predict_pipeline = PredictPipeline(user_feature_data)
         print("Mid Prediction")
-        results = predict_pipeline.predict(pred_df)
+        results = predict_pipeline.predict_pipeline()
         print("after Prediction")
         return render_template('home.html', results=results[0])
 

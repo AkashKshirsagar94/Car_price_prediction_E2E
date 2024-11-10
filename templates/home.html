@@ -1,0 +1,68 @@
+<html>
+<body>
+    <div class="login">
+       <h1>Car Price Prediction</h1>
+   
+       <form action="{{ url_for('predict_datapoint')}}" method="post">
+        <h1>
+            <legend>Car price prediction</legend>
+        </h1>
+        
+        <div class="mb-3">
+            <label class="form-label">curb-weight</label>
+            <input class="form-control" type="number" name="curb-weight"
+                placeholder="Enter a curb-weight " min='1000' max='4000' />
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">engine-size</label>
+            <input class="form-control" type="number" name="engine-size"
+                placeholder="Enter engine-size " min='80' max='300' />
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">horsepower</label>
+            <input class="form-control" type="number" name="horsepower"
+                placeholder="Enter horsepower " min='40' max='300' />
+        </div> 
+
+        <div class="mb-3">
+            <label class="form-label">city-mpg</label>
+            <input class="form-control" type="number" name="city-mpg"
+                placeholder="Enter city-mpg " min='10' max='50' />
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">length</label>
+            <input class="form-control" type="number" name="length"
+                placeholder="Enter length " min='100' max='210' />
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">make</label>
+            <select class="form-control" name="make" placeholder="Enter make of the car" required>
+                <option class="placeholder" selected disabled value="">Select make</option>
+                <option value="alfa-romero">
+                    alfa-romero
+                </option>
+                <option value="audi">
+                    audi
+                </option>
+                <option value="bmw">
+                    bmw
+                </option>
+                <option value="chevrolet">
+                    chevrolet
+                </option>
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <input class="btn btn-primary" type="submit" value="Predict the car price" required />
+        </div>
+    </form>
+    <h2>
+       THE  prediction is {{results}}
+    </h2>
+   <body>
+</html>

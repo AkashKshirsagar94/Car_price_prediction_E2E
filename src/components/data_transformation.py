@@ -24,7 +24,8 @@ class DataTransformation:
         self.data = data
 
 #This creates transformation object that performs data normalization & onehotencoding    
-    def data_transformation_object(self):
+    def data_transformation_object(self):    
+        
         num_pipeline = Pipeline(steps = [
                                     ('scaler', StandardScaler(with_mean=False))
                                     ]
@@ -42,14 +43,15 @@ class DataTransformation:
         return preprocessor
 
     def initiate_data_transformation(self):
-        # Saving a preprocessor object file
-        preprocessor_obj = self.data_transformation_object()
-        preprocessor_obj_file_path = os.path.join('artifacts', 'preprocessor.pkl')
-        save_object(file_path=preprocessor_obj_file_path, obj=preprocessor_obj)
 
         #Initiate the data tranformation
         x = self.data.drop(columns = ['price'], axis=1)
+        
+        # Saving a preprocessor object file
+        preprocessor_obj = self.data_transformation_object()
         input_features = preprocessor_obj.fit_transform(x).toarray()
+        preprocessor_obj_file_path = os.path.join('artifacts', 'preprocessor.pkl')
+        save_object(file_path=preprocessor_obj_file_path, obj=preprocessor_obj)
 
         return preprocessor_obj_file_path, input_features
 
